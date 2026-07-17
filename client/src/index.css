@@ -46,13 +46,13 @@
   --color-cyan-accent: oklch(0.75 0.18 195);
   --color-gold: oklch(0.78 0.15 85);
   --color-surface: oklch(0.16 0.015 260);
-  --color-surface-2: oklch(0.20 0.015 260);
+  --color-surface-2: oklch(0.2 0.015 260);
 }
 
 /* ── Deep Space Lab Dark Theme (default) ── */
 :root {
   --radius: 0.65rem;
-  --background: oklch(0.10 0.012 260);
+  --background: oklch(0.1 0.012 260);
   --foreground: oklch(0.92 0.005 260);
   --card: oklch(0.16 0.015 260);
   --card-foreground: oklch(0.92 0.005 260);
@@ -60,12 +60,12 @@
   --popover-foreground: oklch(0.92 0.005 260);
   --primary: oklch(0.62 0.22 255);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.20 0.015 260);
+  --secondary: oklch(0.2 0.015 260);
   --secondary-foreground: oklch(0.75 0.01 260);
-  --muted: oklch(0.20 0.015 260);
+  --muted: oklch(0.2 0.015 260);
   --muted-foreground: oklch(0.55 0.01 260);
   --accent: oklch(0.75 0.18 195);
-  --accent-foreground: oklch(0.10 0.012 260);
+  --accent-foreground: oklch(0.1 0.012 260);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 8%);
@@ -75,12 +75,12 @@
   --chart-2: oklch(0.75 0.18 195);
   --chart-3: oklch(0.78 0.15 85);
   --chart-4: oklch(0.65 0.22 25);
-  --chart-5: oklch(0.70 0.18 150);
+  --chart-5: oklch(0.7 0.18 150);
   --sidebar: oklch(0.13 0.015 260);
   --sidebar-foreground: oklch(0.92 0.005 260);
   --sidebar-primary: oklch(0.62 0.22 255);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.20 0.015 260);
+  --sidebar-accent: oklch(0.2 0.015 260);
   --sidebar-accent-foreground: oklch(0.92 0.005 260);
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.62 0.22 255);
@@ -99,7 +99,7 @@
   --secondary: oklch(0.94 0.008 240);
   --secondary-foreground: oklch(0.35 0.015 260);
   --muted: oklch(0.94 0.008 240);
-  --muted-foreground: oklch(0.50 0.015 260);
+  --muted-foreground: oklch(0.5 0.015 260);
   --accent: oklch(0.55 0.18 195);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.55 0.22 25);
@@ -107,11 +107,11 @@
   --border: oklch(0.88 0.01 240);
   --input: oklch(0.88 0.01 240);
   --ring: oklch(0.52 0.22 255);
-  --sidebar: oklch(0.20 0.020 260);
+  --sidebar: oklch(0.2 0.02 260);
   --sidebar-foreground: oklch(0.92 0.005 260);
   --sidebar-primary: oklch(0.62 0.22 255);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.28 0.020 260);
+  --sidebar-accent: oklch(0.28 0.02 260);
   --sidebar-accent-foreground: oklch(0.92 0.005 260);
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.62 0.22 255);
@@ -123,13 +123,20 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Hanuman', 'Inter', sans-serif;
+    font-family: "Hanuman", "Inter", sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Battambang', 'Inter', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Battambang", "Inter", sans-serif;
   }
-  code, pre, .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  code,
+  pre,
+  .font-mono {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -190,12 +197,18 @@
   /* Glow card */
   .glow-card {
     border: 1px solid oklch(0.62 0.22 255 / 30%);
-    box-shadow: 0 0 20px oklch(0.62 0.22 255 / 12%), 0 4px 24px oklch(0 0 0 / 40%);
-    transition: box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 0 20px oklch(0.62 0.22 255 / 12%),
+      0 4px 24px oklch(0 0 0 / 40%);
+    transition:
+      box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .glow-card:hover {
-    box-shadow: 0 0 32px oklch(0.62 0.22 255 / 25%), 0 8px 32px oklch(0 0 0 / 50%);
+    box-shadow:
+      0 0 32px oklch(0.62 0.22 255 / 25%),
+      0 8px 32px oklch(0 0 0 / 50%);
     transform: translateY(-3px);
   }
 
@@ -215,14 +228,24 @@
   /* Circuit trace divider */
   .circuit-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.62 0.22 255 / 50%), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(0.62 0.22 255 / 50%),
+      transparent
+    );
     position: relative;
   }
 
   /* Floating animation for hero */
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
 
   .animate-float {
@@ -231,8 +254,13 @@
 
   /* Pulse glow */
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 8px oklch(0.62 0.22 255 / 40%); }
-    50% { box-shadow: 0 0 24px oklch(0.62 0.22 255 / 70%); }
+    0%,
+    100% {
+      box-shadow: 0 0 8px oklch(0.62 0.22 255 / 40%);
+    }
+    50% {
+      box-shadow: 0 0 24px oklch(0.62 0.22 255 / 70%);
+    }
   }
 
   .animate-pulse-glow {
@@ -241,8 +269,12 @@
 
   /* Scan line */
   @keyframes scan {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(400%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
   }
 
   .animate-scan {
@@ -256,7 +288,7 @@
 
   /* Code pin badge */
   .pin-badge {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.65rem;
     padding: 1px 6px;
     border-radius: 4px;
@@ -275,7 +307,7 @@
 
   /* Data badge — coordinate/status style */
   .data-badge {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.6rem;
     padding: 2px 8px;
     border-radius: 2px;
@@ -295,7 +327,7 @@
     border-left: 2px solid oklch(0.62 0.22 255);
     background: oklch(0.62 0.22 255 / 6%);
     border-radius: 0 4px 4px 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -307,7 +339,9 @@
     background: oklch(1 0 0 / 4%);
     border: 1px solid oklch(1 0 0 / 8%);
     border-radius: var(--radius-lg);
-    transition: border-color 200ms, box-shadow 200ms;
+    transition:
+      border-color 200ms,
+      box-shadow 200ms;
   }
   .crew-card:hover {
     border-color: oklch(0.62 0.22 255 / 40%);
@@ -327,7 +361,7 @@
     background: oklch(0.12 0.012 260);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.30 0.02 260);
+    background: oklch(0.3 0.02 260);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {

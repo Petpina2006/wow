@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import {
   Car,
@@ -87,12 +86,11 @@ const features = [
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* ── Hero Section ── */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         {/* Background */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/manus-storage/hero-banner_c7594441.png')" }}
+          style={{ backgroundImage: "url('/public/Img/banner.png')" }}
         />
         <div className="absolute inset-0 bg-linear-to-r from-background/95 via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
@@ -185,7 +183,7 @@ export default function Home() {
           <img
             src="/public/Img/car.png"
             alt="RC Car"
-            className="w-72 h-72 object-contain opacity-80"
+            className="w-120 h-120 object-contain opacity-80"
           />
         </motion.div>
       </section>
@@ -196,7 +194,7 @@ export default function Home() {
         <div className="container relative">
           <div className="flex items-center gap-3 mb-6">
             <span className="lab-module">SYS-STATUS</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+            <div className="flex-1 h-px bg-linear-to-r from-primary/30 to-transparent" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat, i) => {
@@ -210,12 +208,16 @@ export default function Home() {
                   transition={{ delay: i * 0.08, duration: 0.4 }}
                   className="glass-card p-5 flex items-center gap-4"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                     <Icon size={18} className="text-primary" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-foreground font-['JetBrains_Mono',monospace]">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground font-['Battambang']">{stat.label}</p>
+                    <p className="text-2xl font-bold text-foreground font-['JetBrains_Mono',monospace]">
+                      {stat.value}
+                    </p>
+                    <p className="text-xs text-muted-foreground font-['Battambang']">
+                      {stat.label}
+                    </p>
                   </div>
                 </motion.div>
               );
@@ -282,13 +284,16 @@ export default function Home() {
                           <img
                             src={project.image}
                             alt={project.titleEn}
-                            className="w-16 h-16 object-contain opacity-60 group-hover:opacity-90 transition-opacity flex-shrink-0"
+                            className="w-16 h-16 object-contain opacity-60 group-hover:opacity-90 transition-opacity shrink-0"
                           />
                         )}
                       </div>
                       <div className="relative flex items-center gap-1 mt-4 pt-3 border-t border-white/6 text-xs font-['Inter'] text-muted-foreground group-hover:text-primary transition-colors">
                         <span>ស្វែងយល់បន្ថែម</span>
-                        <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight
+                          size={12}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
                       </div>
                     </div>
                   </Link>
@@ -305,7 +310,7 @@ export default function Home() {
         <div className="container relative">
           <div className="flex items-center gap-3 mb-8">
             <span className="lab-module">CAPABILITIES</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+            <div className="flex-1 h-px bg-linear-to-r from-primary/30 to-transparent" />
           </div>
           <h2 className="text-3xl font-bold font-['Battambang'] text-foreground mb-8">
             លក្ខណៈពិសេស

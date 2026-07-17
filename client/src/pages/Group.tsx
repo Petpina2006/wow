@@ -1,4 +1,3 @@
-
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Plus, X, GraduationCap, Upload } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
@@ -10,7 +9,7 @@ const STORAGE_KEY = "rc-car-group-members";
 
 const defaultMembers: Member[] = [
   { id: nanoid(), name: "NULL", role: "leader", photo: "" },
-  { id: nanoid(), name: "NULL", role: "member", photo: "" },
+  { id: nanoid(), name: "NULL", role: "co-leader", photo: "" },
   { id: nanoid(), name: "NULL", role: "member", photo: "" },
 ];
 
@@ -27,7 +26,9 @@ export default function Group() {
   const [showForm, setShowForm] = useState(false);
   const [editMember, setEditMember] = useState<Member | null>(null);
   const [formName, setFormName] = useState("");
-  const [formRole, setFormRole] = useState<"leader" | "member">("member");
+  const [formRole, setFormRole] = useState<"leader" | "co-leader" | "member">(
+    "member"
+  );
   const [formPhoto, setFormPhoto] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -52,7 +53,7 @@ export default function Group() {
   };
 
   const handleDelete = (id: string) => {
-    setMembers((prev) => prev.filter((m) => m.id !== id));
+    setMembers(prev => prev.filter(m => m.id !== id));
     toast.success("លុបសមាជិកបានជោគជ័យ");
   };
 
@@ -60,7 +61,7 @@ export default function Group() {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (ev) => setFormPhoto(ev.target?.result as string);
+    reader.onload = ev => setFormPhoto(ev.target?.result as string);
     reader.readAsDataURL(file);
   };
 
@@ -72,14 +73,14 @@ export default function Group() {
     }
 
     if (editMember) {
-      setMembers((prev) =>
-        prev.map((m) =>
+      setMembers(prev =>
+        prev.map(m =>
           m.id === editMember.id
             ? { ...m, name: formName, role: formRole, photo: formPhoto }
             : m
         )
       );
-      toast.success("កែប្រែសមាជិកបានជោគជ័យ");
+      toast.success("កែប្រែសមាជិកបានជោគជ័យ👌");
     } else {
       const newMember: Member = {
         id: nanoid(),
@@ -87,31 +88,32 @@ export default function Group() {
         role: formRole,
         photo: formPhoto,
       };
-      setMembers((prev) => [...prev, newMember]);
-      toast.success("បន្ថែមសមាជិកបានជោគជ័យ");
+      setMembers(prev => [...prev, newMember]);
+      toast.success("បន្ថែមសមាជិកបានជោគជ័យ✅");
     }
     setShowForm(false);
   };
 
-  const leaders = members.filter((m) => m.role === "leader");
-  const regularMembers = members.filter((m) => m.role === "member");
+  const leaders = members.filter(m => m.role === "leader");
+  const coLeaders = members.filter(m => m.role === "co-leader");
+  const regularMembers = members.filter(m => m.role === "member");
 
   return (
     <div className="min-h-screen">
       {/* Page Header */}
       <div className="relative py-12 border-b border-white/8 overflow-hidden">
         <div className="absolute inset-0 circuit-bg opacity-25" />
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/10 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-yellow-600/10 to-transparent" />
         <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-3">
             <span className="lab-module">CREW-MANIFEST</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-[oklch(0.78_0.15_85/40%)] to-transparent" />
+            <div className="h-px flex-1 bg-linear-to-r from-[oklch(0.78_0.15_85/40%)] to-transparent" />
           </div>
           <h1 className="text-4xl font-bold font-['Battambang'] text-foreground mb-2">
             ក្រុម ៣
           </h1>
           <p className="text-muted-foreground font-['Hanuman']">
-            Group 3 — RC_CAR Project Team
+            ក្រុមទី 3 — គម្រោង RC_CAR
           </p>
         </div>
       </div>
@@ -125,22 +127,28 @@ export default function Group() {
         >
           <div className="absolute inset-0 circuit-bg opacity-30" />
           <div className="relative flex items-center gap-2 px-5 py-2 border-b border-[oklch(0.78_0.15_85/20%)] bg-[oklch(0.78_0.15_85/8%)]">
-            <span className="text-[9px] font-mono tracking-widest uppercase text-gold">INSTRUCTOR</span>
+            <span className="text-[9px] font-mono tracking-widest uppercase text-gold">
+              INSTRUCTOR
+            </span>
             <GraduationCap size={11} className="text-gold" />
           </div>
           <div className="relative flex items-center gap-5 p-5">
-            <div className="w-16 h-16 rounded-full bg-[oklch(0.78_0.15_85/15%)] border-2 border-[oklch(0.78_0.15_85/60%)] flex items-center justify-center flex-shrink-0">
-              <GraduationCap size={28} className="text-[oklch(0.78_0.15_85)]" />
+            <div className="w-16 h-16 rounded-full bg-[oklch(0.78_0.15_85/15%)] border-2 border-[oklch(0.78_0.15_85/60%)] flex items-center justify-center shrink-0">
+              <img
+                src="/public/Img/ouk-polyvan.jpg"
+                alt="Ouk Polyvan"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
             <div>
-              <p className="text-[10px] font-mono tracking-wider uppercase text-muted-foreground mb-1">
-               ​បង្រៀនដោយ / Taught by
+              <p className="text-[10px] tracking-wider uppercase text-muted-foreground mb-1 font-bold font-['Battambang']">
+                ​បង្រៀនដោយ សាស្រ្តាចារ្យ
               </p>
-              <h2 className="text-2xl font-bold font-['Battambang'] text-[oklch(0.78_0.15_85)]">
+              <h2 className="text-2xl font-bold font-['Battambang'] text-gold">
                 Ouk Polyvan
               </h2>
               <p className="text-sm text-muted-foreground font-['Hanuman']">
-                សាស្រ្តាចារ្យ — Royal University of Phnom Penh
+                Royal University of Phnom Penh
               </p>
             </div>
           </div>
@@ -174,13 +182,40 @@ export default function Group() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <AnimatePresence>
                 {leaders.map((m, i) => (
-                  <MemberCard key={m.id} member={m} onEdit={openEdit} onDelete={handleDelete} delay={i * 0.1} />
+                  <MemberCard
+                    key={m.id}
+                    member={m}
+                    onEdit={openEdit}
+                    onDelete={handleDelete}
+                    delay={i * 0.1}
+                  />
                 ))}
               </AnimatePresence>
             </div>
           </div>
         )}
+        {/*co-leader*/}
+        {coLeaders.length > 0 && (
+          <div>
+            <p className="text-xs text-blue-400 font-['Battambang'] mb-4 flex items-center gap-2">
+              <span>⭐</span> អនុប្រធានក្រុម
+            </p>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <AnimatePresence>
+                {coLeaders.map((m, i) => (
+                  <MemberCard
+                    key={m.id}
+                    member={m}
+                    onEdit={openEdit}
+                    onDelete={handleDelete}
+                    delay={i * 0.1}
+                  />
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
+        )}
         {/* Members */}
         {regularMembers.length > 0 && (
           <div>
@@ -190,7 +225,13 @@ export default function Group() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               <AnimatePresence>
                 {regularMembers.map((m, i) => (
-                  <MemberCard key={m.id} member={m} onEdit={openEdit} onDelete={handleDelete} delay={i * 0.06} />
+                  <MemberCard
+                    key={m.id}
+                    member={m}
+                    onEdit={openEdit}
+                    onDelete={handleDelete}
+                    delay={i * 0.06}
+                  />
                 ))}
               </AnimatePresence>
             </div>
@@ -199,8 +240,13 @@ export default function Group() {
 
         {members.length === 0 && (
           <div className="text-center py-16">
-            <Users size={48} className="text-muted-foreground/30 mx-auto mb-3" />
-            <p className="text-muted-foreground font-['Battambang']">មិនទាន់មានសមាជិក</p>
+            <Users
+              size={48}
+              className="text-muted-foreground/30 mx-auto mb-3"
+            />
+            <p className="text-muted-foreground font-['Battambang']">
+              មិនទាន់មានសមាជិកในระบบนี้
+            </p>
           </div>
         )}
       </div>
@@ -213,7 +259,7 @@ export default function Group() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-            onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
+            onClick={e => e.target === e.currentTarget && setShowForm(false)}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 16 }}
@@ -242,7 +288,11 @@ export default function Group() {
                     onClick={() => fileRef.current?.click()}
                   >
                     {formPhoto ? (
-                      <img src={formPhoto} alt="preview" className="w-full h-full object-cover" />
+                      <img
+                        src={formPhoto}
+                        alt="preview"
+                        className="w-full h-full object-cover"
+                      />
                     ) : (
                       <Upload size={24} className="text-muted-foreground" />
                     )}
@@ -271,7 +321,7 @@ export default function Group() {
                   <input
                     type="text"
                     value={formName}
-                    onChange={(e) => setFormName(e.target.value)}
+                    onChange={e => setFormName(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-sm text-foreground focus:outline-none focus:border-primary/50 font-['Battambang']"
                     placeholder="ឈ្មោះសមាជិក"
                   />
@@ -283,7 +333,7 @@ export default function Group() {
                     តួនាទី
                   </label>
                   <div className="flex gap-3">
-                    {(["leader", "member"] as const).map((role) => (
+                    {(["leader", "co-leader", "member"] as const).map(role => (
                       <button
                         key={role}
                         type="button"
@@ -292,11 +342,17 @@ export default function Group() {
                           formRole === role
                             ? role === "leader"
                               ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-400"
-                              : "bg-primary/20 border-primary/50 text-primary"
+                              : role === "co-leader"
+                                ? "bg-blue-500/20 border-blue-500/50 text-blue-400"
+                                : "bg-primary/20 border-primary/50 text-primary"
                             : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/10"
                         }`}
                       >
-                        {role === "leader" ? "👑 មេក្រុម" : "👤 សមាជិក"}
+                        {role === "leader"
+                          ? "👑 ប្រធាន"
+                          : role === "co-leader"
+                            ? "⭐ អនុប្រធាន"
+                            : "👤 សមាជិក"}
                       </button>
                     ))}
                   </div>

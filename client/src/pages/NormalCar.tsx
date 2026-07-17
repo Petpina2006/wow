@@ -1,7 +1,3 @@
-/**
- * Normal Car page — Arduino RC Car with Bluetooth
- * Sections: Components, Wiring, Explanation, Code, Simulation, Q&A
- */
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -171,17 +167,13 @@ const faqItems = [
       "ថ្មមានថាមពលទាប ។ ត្រូតពិនិត្យ PWM Value ។ ប្រើថ្ម 9V ឬ 12V ។ ពិនិត្យ ENA, ENB Pin ។",
   },
 ];
-
 type Direction = "forward" | "backward" | "left" | "right" | "stop";
-
-// ── Simulation Canvas ──
 function CarSimulation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [activeCmd, setActiveCmd] = useState<Direction | null>(null);
   const carState = useRef({ x: 200, y: 150, angle: 0, speed: 0 });
   const animRef = useRef<number>(0);
   const cmdRef = useRef<Direction | null>(null);
-
   const handleCommand = useCallback((dir: Direction) => {
     setActiveCmd(dir);
     cmdRef.current = dir;
@@ -203,12 +195,16 @@ function CarSimulation() {
       // Update physics
       if (cmd === "forward") {
         carState.current.speed = Math.min(speed + 0.3, 3);
-        carState.current.x += Math.cos((angle * Math.PI) / 180) * carState.current.speed;
-        carState.current.y += Math.sin((angle * Math.PI) / 180) * carState.current.speed;
+        carState.current.x +=
+          Math.cos((angle * Math.PI) / 180) * carState.current.speed;
+        carState.current.y +=
+          Math.sin((angle * Math.PI) / 180) * carState.current.speed;
       } else if (cmd === "backward") {
         carState.current.speed = Math.min(speed + 0.3, 2);
-        carState.current.x -= Math.cos((angle * Math.PI) / 180) * carState.current.speed;
-        carState.current.y -= Math.sin((angle * Math.PI) / 180) * carState.current.speed;
+        carState.current.x -=
+          Math.cos((angle * Math.PI) / 180) * carState.current.speed;
+        carState.current.y -=
+          Math.sin((angle * Math.PI) / 180) * carState.current.speed;
       } else if (cmd === "left") {
         carState.current.angle -= 2.5;
       } else if (cmd === "right") {
@@ -216,48 +212,49 @@ function CarSimulation() {
       } else {
         carState.current.speed = Math.max(speed - 0.2, 0);
         if (carState.current.speed > 0) {
-          carState.current.x += Math.cos((angle * Math.PI) / 180) * carState.current.speed;
-          carState.current.y += Math.sin((angle * Math.PI) / 180) * carState.current.speed;
+          carState.current.x +=
+            Math.cos((angle * Math.PI) / 180) * carState.current.speed;
+          carState.current.y +=
+            Math.sin((angle * Math.PI) / 180) * carState.current.speed;
         }
       }
-
-      // Wrap around
-      const W = canvas.width, H = canvas.height;
+      const W = canvas.width,
+        H = canvas.height;
       if (carState.current.x < -30) carState.current.x = W + 30;
       if (carState.current.x > W + 30) carState.current.x = -30;
       if (carState.current.y < -30) carState.current.y = H + 30;
       if (carState.current.y > H + 30) carState.current.y = -30;
-
-      // Clear
       ctx.clearRect(0, 0, W, H);
 
-      // Background grid
       ctx.fillStyle = "oklch(0.12 0.015 260)";
       ctx.fillRect(0, 0, W, H);
       ctx.strokeStyle = "oklch(0.62 0.22 255 / 0.08)";
       ctx.lineWidth = 1;
       for (let gx = 0; gx < W; gx += 40) {
-        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, H);
+        ctx.stroke();
       }
       for (let gy = 0; gy < H; gy += 40) {
-        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(W, gy);
+        ctx.stroke();
       }
-
-      // Draw car
-      const cx = carState.current.x, cy = carState.current.y;
+      const cx = carState.current.x,
+        cy = carState.current.y;
       const ang = (carState.current.angle * Math.PI) / 180;
 
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(ang);
 
-      // Body
       ctx.fillStyle = "oklch(0.62 0.22 255 / 0.9)";
       ctx.beginPath();
       ctx.roundRect(-18, -10, 36, 20, 4);
       ctx.fill();
 
-      // Glow
       ctx.shadowColor = "oklch(0.62 0.22 255)";
       ctx.shadowBlur = 12;
       ctx.fillStyle = "oklch(0.62 0.22 255 / 0.3)";
@@ -266,9 +263,13 @@ function CarSimulation() {
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Wheels
       ctx.fillStyle = "oklch(0.25 0.01 260)";
-      [[-12, -13], [12, -13], [-12, 13], [12, 13]].forEach(([wx, wy]) => {
+      [
+        [-12, -13],
+        [12, -13],
+        [-12, 13],
+        [12, 13],
+      ].forEach(([wx, wy]) => {
         ctx.beginPath();
         ctx.roundRect(wx - 5, wy - 3, 10, 6, 2);
         ctx.fill();
@@ -288,7 +289,11 @@ function CarSimulation() {
       // Speed indicator
       ctx.fillStyle = "oklch(0.62 0.22 255 / 0.8)";
       ctx.font = "11px 'JetBrains Mono'";
-      ctx.fillText(`Speed: ${carState.current.speed.toFixed(1)} | Angle: ${Math.round(carState.current.angle)}°`, 10, 20);
+      ctx.fillText(
+        `Speed: ${carState.current.speed.toFixed(1)} | Angle: ${Math.round(carState.current.angle)}°`,
+        10,
+        20
+      );
 
       animRef.current = requestAnimationFrame(draw);
     }
@@ -301,7 +306,9 @@ function CarSimulation() {
     <div className="glass-card overflow-hidden">
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/8">
         <Play size={16} className="text-primary" />
-        <span className="text-sm font-medium font-['Battambang']">ការក្លែងធ្វើ RC Car</span>
+        <span className="text-sm font-medium font-['Battambang']">
+          RC Car Testing
+        </span>
       </div>
       <div className="p-4 flex flex-col lg:flex-row gap-6 items-center">
         <canvas
@@ -401,7 +408,11 @@ export default function NormalCar() {
       <div className="container py-10 space-y-14">
         {/* Components */}
         <section>
-          <SectionHeader icon={Cpu} title="សមាសភាគ" subtitle="Components used in this project" />
+          <SectionHeader
+            icon={Cpu}
+            title="សមាសភាគ"
+            subtitle="Components used in this project"
+          />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {components.map((comp, i) => (
               <ComponentCard key={comp.name} {...comp} delay={i * 0.05} />
@@ -411,13 +422,22 @@ export default function NormalCar() {
 
         {/* Wiring */}
         <section>
-          <SectionHeader icon={Cable} title="ការភ្ជាប់ Pin" subtitle="Wiring / Connection diagram" accent="cyan" />
+          <SectionHeader
+            icon={Cable}
+            title="ការភ្ជាប់ Pin"
+            subtitle="Wiring / Connection diagram"
+            accent="cyan"
+          />
           <WiringDiagram />
         </section>
 
         {/* Explanation */}
         <section>
-          <SectionHeader icon={BookOpen} title="ការពន្យល់" subtitle="How it works" />
+          <SectionHeader
+            icon={BookOpen}
+            title="ការពន្យល់"
+            subtitle="How it works"
+          />
           <div className="grid md:grid-cols-3 gap-4">
             {[
               {
@@ -457,19 +477,36 @@ export default function NormalCar() {
 
         {/* Code Editor */}
         <section>
-          <SectionHeader icon={Code2} title="កូដ Arduino" subtitle="Editable source code" accent="cyan" />
-          <CodeEditor initialCode={arduinoCode} title="RC Car — Bluetooth Control" />
+          <SectionHeader
+            icon={Code2}
+            title="កូដ Arduino"
+            subtitle="Editable source code"
+            accent="cyan"
+          />
+          <CodeEditor
+            initialCode={arduinoCode}
+            title="RC Car — Bluetooth Control"
+          />
         </section>
 
         {/* Simulation */}
         <section>
-          <SectionHeader icon={Play} title="ការក្លែងធ្វើ" subtitle="Interactive simulation" />
+          <SectionHeader
+            icon={Play}
+            title="Testing"
+            subtitle="Interactive simulation"
+          />
           <CarSimulation />
         </section>
 
         {/* Q&A */}
         <section>
-          <SectionHeader icon={HelpCircle} title="សំណួរ & ចម្លើយ" subtitle="FAQ" accent="gold" />
+          <SectionHeader
+            icon={HelpCircle}
+            title="សំណួរ & ចម្លើយ"
+            subtitle="FAQ"
+            accent="gold"
+          />
           <FAQAccordion items={faqItems} />
         </section>
       </div>

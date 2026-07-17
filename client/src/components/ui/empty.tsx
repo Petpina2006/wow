@@ -27,7 +27,6 @@ function EmptyHeader({ className, ...props }: React.ComponentProps<"div">) {
     />
   );
 }
-
 const emptyMediaVariants = cva(
   "flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
@@ -67,7 +66,6 @@ function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
     />
   );
 }
-
 function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <div

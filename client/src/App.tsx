@@ -20,7 +20,10 @@ function AppShell() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar sidebarOpen={sidebarOpen} onToggleSidebar={() => setSidebarOpen((o) => !o)} />
+      <Navbar
+        sidebarOpen={sidebarOpen}
+        onToggleSidebar={() => setSidebarOpen(o => !o)}
+      />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <PageLayout sidebarOpen={sidebarOpen}>
         <Switch>

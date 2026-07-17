@@ -1,6 +1,3 @@
-/**
- * FAQAccordion — animated Q&A accordion in Khmer
- */
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { useState } from "react";

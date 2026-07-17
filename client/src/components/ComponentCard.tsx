@@ -1,7 +1,3 @@
-/**
- * ComponentCard — schematic-style hardware component card
- * Deep Space Lab: circuit-bg, lab-module badge, no emoji
- */
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -21,14 +17,20 @@ import {
 // Map component names to Lucide icons
 function getIcon(name: string) {
   const n = name.toLowerCase();
-  if (n.includes("arduino") || n.includes("esp32") || n.includes("microcontroller")) return Cpu;
+  if (
+    n.includes("arduino") ||
+    n.includes("esp32") ||
+    n.includes("microcontroller")
+  )
+    return Cpu;
   if (n.includes("motor driver") || n.includes("l298")) return Zap;
   if (n.includes("bluetooth") || n.includes("hc-05")) return Radio;
   if (n.includes("camera") || n.includes("cam")) return Camera;
   if (n.includes("battery") || n.includes("ថ្ម")) return Battery;
   if (n.includes("servo")) return Wrench;
   if (n.includes("wheel") || n.includes("motor")) return CircleDot;
-  if (n.includes("wifi") || n.includes("ultrasonic") || n.includes("sensor")) return Eye;
+  if (n.includes("wifi") || n.includes("ultrasonic") || n.includes("sensor"))
+    return Eye;
   if (n.includes("chassis") || n.includes("frame")) return Layers;
   if (n.includes("ir sensor") || n.includes("line")) return GitBranch;
   if (n.includes("display") || n.includes("lcd")) return Monitor;
@@ -65,7 +67,9 @@ export default function ComponentCard({
     >
       {/* Top bar */}
       <div className="flex items-center gap-1.5 px-3 py-1.5 border-b border-white/6 bg-white/2">
-        <span className="text-[8px] font-mono tracking-widest uppercase text-primary/60">COMPONENT</span>
+        <span className="text-[8px] font-mono tracking-widest uppercase text-primary/60">
+          COMPONENT
+        </span>
       </div>
 
       {/* Icon area */}
@@ -88,7 +92,9 @@ export default function ComponentCard({
 
       {/* Info */}
       <div className="p-3 flex flex-col gap-1.5 flex-1">
-        <h3 className="text-xs font-bold text-foreground font-['Inter'] leading-tight">{name}</h3>
+        <h3 className="text-xs font-bold text-foreground font-['Inter'] leading-tight">
+          {name}
+        </h3>
         <p className="text-[10px] text-primary font-['Battambang']">{nameKh}</p>
         <p className="text-[10px] text-muted-foreground font-['Hanuman'] leading-relaxed mt-auto">
           {description}

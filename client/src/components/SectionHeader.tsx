@@ -1,7 +1,3 @@
-/**
- * SectionHeader — lab-module style with asymmetric layout
- * Uses lab-module badge + circuit divider
- */
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
@@ -55,7 +51,9 @@ export default function SectionHeader({
         >
           <Icon size={13} className={accentText[accent]} />
           {subtitle && (
-            <span className={`text-[9px] font-mono tracking-widest uppercase ${accentText[accent]}`}>
+            <span
+              className={`text-[9px] font-mono tracking-widest uppercase ${accentText[accent]}`}
+            >
               {subtitle}
             </span>
           )}
@@ -69,7 +67,9 @@ export default function SectionHeader({
       </div>
 
       {/* Main title */}
-      <h2 className={`text-2xl font-bold font-['Battambang'] ${accentText[accent]}`}>
+      <h2
+        className={`text-2xl font-bold font-['Battambang'] ${accentText[accent]}`}
+      >
         {title}
       </h2>
     </motion.div>

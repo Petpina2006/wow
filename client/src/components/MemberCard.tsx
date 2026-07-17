@@ -1,11 +1,10 @@
-
 import { motion } from "framer-motion";
-import { Crown, User, Edit2, Trash2, Shield } from "lucide-react";
+import { Crown, User, Edit2, Trash2, Shield, Star } from "lucide-react";
 
 export interface Member {
   id: string;
   name: string;
-  role: "leader" | "member";
+  role: "leader" | "co-leader" | "member";
   photo?: string;
 }
 
@@ -23,6 +22,24 @@ export default function MemberCard({
   delay = 0,
 }: MemberCardProps) {
   const isLeader = member.role === "leader";
+  const isCoLeader = member.role === "co-leader";
+
+  const cardStyle = isLeader
+    ? `
+      border-2
+      border-[oklch(0.78_0.15_85/50%)]
+      shadow-[0_0_20px_oklch(0.78_0.15_85/10%)]
+    `
+    : isCoLeader
+      ? `
+      border-2
+      border-blue-500/40
+      shadow-[0_0_15px_rgba(59,130,246,0.15)]
+    `
+      : `
+      border-primary/25
+      hover:border-primary/50
+    `;
 
   return (
     <motion.div
@@ -39,43 +56,38 @@ export default function MemberCard({
         crew-card
         relative overflow-hidden group rounded-2xl
         border transition-all duration-300
-
-        ${
-          isLeader
-            ? `
-              leader
-              border-2
-              border-[oklch(0.78_0.15_85/50%)]
-              shadow-[0_0_20px_oklch(0.78_0.15_85/10%)]
-            `
-            : `
-              border-primary/25
-              hover:border-primary/50
-            `
-        }
+        ${cardStyle}
       `}
     >
-      {/* Circuit background */}
+      {/* Background */}
       <div className="absolute inset-0 circuit-bg opacity-30" />
 
-      {/* Top bar */}
+      {/* Header */}
       <div
         className={`relative flex items-center justify-between px-4 py-2 border-b ${
           isLeader
             ? "border-[oklch(0.78_0.15_85/25%)] bg-[oklch(0.78_0.15_85/8%)]"
-            : "border-white/10 bg-white/[0.02]"
+            : isCoLeader
+              ? "border-blue-500/20 bg-blue-500/5"
+              : "border-white/10 bg-white/[0.02]"
         }`}
       >
         <span
           className={`text-[9px] font-mono tracking-widest uppercase ${
-            isLeader ? "text-gold" : "text-primary"
+            isLeader
+              ? "text-gold"
+              : isCoLeader
+                ? "text-blue-400"
+                : "text-primary"
           }`}
         >
-          {isLeader ? "CREW-LEAD" : "CREW-MBR"}
+          {isLeader ? "CREW-LEAD" : isCoLeader ? "VICE-LEAD" : "CREW-MBR"}
         </span>
 
         {isLeader ? (
           <Crown size={12} className="text-gold" />
+        ) : isCoLeader ? (
+          <Star size={12} className="text-blue-400" />
         ) : (
           <Shield size={12} className="text-primary/60" />
         )}
@@ -88,7 +100,9 @@ export default function MemberCard({
           className={`rounded-full overflow-hidden flex items-center justify-center bg-white/8 border-2 ${
             isLeader
               ? "w-20 h-20 border-[oklch(0.78_0.15_85/60%)]"
-              : "w-16 h-16 border-primary/40"
+              : isCoLeader
+                ? "w-18 h-18 border-blue-500/50"
+                : "w-16 h-16 border-primary/40"
           }`}
         >
           {member.photo ? (
@@ -100,7 +114,7 @@ export default function MemberCard({
             />
           ) : (
             <User
-              size={isLeader ? 32 : 24}
+              size={isLeader ? 32 : isCoLeader ? 28 : 24}
               className="text-muted-foreground"
             />
           )}
@@ -111,7 +125,9 @@ export default function MemberCard({
           className={`font-bold font-['Battambang'] text-center leading-tight ${
             isLeader
               ? "text-base text-gold"
-              : "text-sm text-foreground"
+              : isCoLeader
+                ? "text-sm text-blue-400"
+                : "text-sm text-foreground"
           }`}
         >
           {member.name}
@@ -122,10 +138,12 @@ export default function MemberCard({
           className={`px-2.5 py-0.5 rounded text-[10px] font-medium font-['Battambang'] ${
             isLeader
               ? "bg-[oklch(0.78_0.15_85/15%)] text-gold border border-[oklch(0.78_0.15_85/35%)]"
-              : "bg-primary/12 text-primary border border-primary/25"
+              : isCoLeader
+                ? "bg-blue-500/15 text-blue-400 border border-blue-500/30"
+                : "bg-primary/12 text-primary border border-primary/25"
           }`}
         >
-          {isLeader ? "👑 មេក្រុម" : "👤 សមាជិក"}
+          {isLeader ? "👑 ប្រធាន" : isCoLeader ? "⭐ អនុប្រធាន" : "👤 សមាជិក"}
         </span>
 
         {/* Actions */}

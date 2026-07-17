@@ -1,6 +1,3 @@
-/**
- * PageLayout — wraps all page content with sidebar offset and padding
- */
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { useIsMobile } from "../hooks/useMobile";

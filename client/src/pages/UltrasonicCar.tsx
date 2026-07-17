@@ -1,7 +1,3 @@
-/**
- * Ultrasonic Car page — RC Car with HC-SR04 obstacle avoidance
- * Sections: Components, Wiring, Explanation, Code, Simulation, Q&A
- */
 import { motion } from "framer-motion";
 import { Cpu, Cable, BookOpen, Code2, Play, HelpCircle } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
@@ -9,6 +5,7 @@ import CodeEditor from "../components/CodeEditor";
 import ComponentCard from "../components/ComponentCard";
 import FAQAccordion from "../components/FAQAccordion";
 import SectionHeader from "../components/SectionHeader";
+
 
 const components = [
   { name: "Arduino UNO", nameKh: "អាដូអ៊ីណូ UNO", description: "ក្ដារបញ្ជាមេ ។", emoji: "🔲" },
@@ -19,8 +16,6 @@ const components = [
 ];
 
 const arduinoCode = `// RC Car with Ultrasonic Obstacle Avoidance
-// Arduino UNO + HC-SR04 + Servo + L298N
-// Royal University of Phnom Penh
 
 #include <Servo.h>
 
@@ -356,7 +351,7 @@ function UltrasonicSimulation() {
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/8">
         <div className="flex items-center gap-2">
           <Play size={16} className="text-primary" />
-          <span className="text-sm font-medium font-['Battambang']">ការក្លែងធ្វើ Obstacle Avoidance</span>
+          <span className="text-sm font-medium font-['Battambang']">Obstacle Avoidance Testing</span>
         </div>
         <motion.button
           whileTap={{ scale: 0.95 }}
@@ -404,6 +399,7 @@ function UltrasonicSimulation() {
         <p className="text-xs text-muted-foreground mt-2 font-['Hanuman']">
           ចុច "ចាប់ផ្តើម" ដើម្បីមើលរថយន្តជៀសវាងឧបសគ្គ ។ ពណ៌ក្រហម = ឧបសគ្គ ។
         </p>
+        
       </div>
     </div>
   );
@@ -413,7 +409,7 @@ export default function UltrasonicCar() {
   return (
     <div className="min-h-screen">
       <div className="relative py-12 border-b border-white/8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-cyan-600/10 to-transparent" />
         <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <span className="pin-badge">Page 2</span>
@@ -499,7 +495,7 @@ export default function UltrasonicCar() {
         </section>
 
         <section>
-          <SectionHeader icon={Play} title="ការក្លែងធ្វើ" subtitle="Canvas simulation" />
+          <SectionHeader icon={Play} title="Testing" subtitle="Canvas simulation" />
           <UltrasonicSimulation />
         </section>
 

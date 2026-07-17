@@ -1,7 +1,3 @@
-/**
- * CodeEditor — CodeMirror-based Arduino code editor
- * Deep Space Lab: dark theme, monospaced, run/reset buttons
- */
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
 import CodeMirror from "@uiw/react-codemirror";
@@ -39,7 +35,7 @@ export default function CodeEditor({
     setOutput(
       `[Compiling...]\n✓ Sketch uses 2,048 bytes (6%) of program storage space.\n✓ Global variables use 184 bytes (8%) of dynamic memory.\n\n[Upload complete] Ready to run on Arduino UNO.\n\n> Serial Monitor started at 9600 baud...`
     );
-    toast.success("ការក្លែងធ្វើការចងក្រងបានជោគជ័យ");
+    toast.success("កូដត្រូវបានបញ្ចូលដោយជោគជ័យ");
   };
 
   return (
@@ -48,7 +44,9 @@ export default function CodeEditor({
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/8 bg-white/3">
         <div className="flex items-center gap-2">
           <Terminal size={16} className="text-primary" />
-          <span className="text-sm font-medium font-['Inter'] text-foreground">{title}</span>
+          <span className="text-sm font-medium font-['Inter'] text-foreground">
+            {title}
+          </span>
           <span className="pin-badge">{language}</span>
         </div>
         <div className="flex items-center gap-2">

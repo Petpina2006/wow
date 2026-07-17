@@ -1,8 +1,3 @@
-/**
- * Sidebar — Deep Space Lab theme
- * Fixed left sidebar with icon navigation, expand/collapse
- * Khmer labels, electric blue active state
- */
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
@@ -84,10 +79,13 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               exit={{ x: -240 }}
               transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
               className="fixed left-0 top-0 bottom-0 z-50 w-60 flex flex-col pt-16"
-              style={{ background: "var(--sidebar)", borderRight: "1px solid var(--sidebar-border)" }}
+              style={{
+                background: "var(--sidebar)",
+                borderRight: "1px solid var(--sidebar-border)",
+              }}
             >
               <nav className="flex-1 py-4 overflow-y-auto">
-                {navItems.map((item) => {
+                {navItems.map(item => {
                   const isActive = location === item.path;
                   const Icon = item.icon;
                   return (
@@ -95,13 +93,19 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                       <div
                         onClick={onClose}
                         className={`flex items-center gap-3 mx-2 mb-1 px-3 py-3 rounded-lg cursor-pointer transition-colors ${
-                          isActive ? "bg-primary/20 text-primary" : "text-sidebar-foreground/60 hover:bg-white/5 hover:text-sidebar-foreground"
+                          isActive
+                            ? "bg-primary/20 text-primary"
+                            : "text-sidebar-foreground/60 hover:bg-white/5 hover:text-sidebar-foreground"
                         }`}
                       >
                         <Icon size={18} />
                         <div>
-                          <p className="text-sm font-medium font-['Battambang']">{item.label}</p>
-                          <p className="text-[10px] text-muted-foreground font-['Inter']">{item.labelEn}</p>
+                          <p className="text-sm font-medium font-['Battambang']">
+                            {item.label}
+                          </p>
+                          <p className="text-[10px] text-muted-foreground font-['Inter']">
+                            {item.labelEn}
+                          </p>
                         </div>
                       </div>
                     </Link>
@@ -128,7 +132,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
     >
       {/* Nav items */}
       <nav className="flex-1 py-4 overflow-y-auto overflow-x-hidden">
-        {navItems.map((item) => {
+        {navItems.map(item => {
           const isActive = location === item.path;
           const Icon = item.icon;
 
@@ -178,7 +182,10 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
                 {/* Chevron for active */}
                 {open && isActive && (
-                  <ChevronRight size={14} className="flex-shrink-0 text-primary" />
+                  <ChevronRight
+                    size={14}
+                    className="flex-shrink-0 text-primary"
+                  />
                 )}
 
                 {/* Tooltip when collapsed */}

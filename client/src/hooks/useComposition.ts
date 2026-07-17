@@ -56,7 +56,6 @@ export function useComposition<
   });
 
   const onKeyDown = usePersistFn((e: React.KeyboardEvent<T>) => {
-  
     if (
       c.current &&
       (e.key === "Escape" || (e.key === "Enter" && !e.shiftKey))

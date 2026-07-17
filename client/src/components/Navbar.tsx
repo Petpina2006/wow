@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -46,7 +45,7 @@ export default function Navbar({ sidebarOpen, onToggleSidebar }: NavbarProps) {
             src="/public/logo/rupp.svg"
             alt="RUPP Logo"
             className="w-8 h-8 object-contain"
-            onError={(e) => {
+            onError={e => {
               (e.target as HTMLImageElement).style.display = "none";
             }}
           />
@@ -62,7 +61,9 @@ export default function Navbar({ sidebarOpen, onToggleSidebar }: NavbarProps) {
         </div>
         {/* Mobile brand */}
         <div className="sm:hidden">
-          <p className="text-sm font-bold text-primary font-['Battambang']">RC_CAR</p>
+          <p className="text-sm font-bold text-primary font-['Battambang']">
+            RC_CAR
+          </p>
         </div>
       </div>
 
